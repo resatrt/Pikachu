@@ -1,20 +1,45 @@
 
-    function writeCode(profix, code, fn) {
-        let container = document.querySelector('#code')
-        let styleTag = document.querySelector('#styleTag')
-        let n = 0
-        let id = setInterval(() => {
-            n += 1
-            container.innerHTML = code.substring(0,n)
-            styleTag.innerHTML = code.substring(0,n)
-            container.scrollTop = container.scrollHeight
-            if(n>=code.length){
-                window.clearInterval(id)
-                fn && fn.call()
-            }
-        }, 10);
+!function () {
+  var duration = 50
+  $('.buttons > button').on('click', function (e) {
+    let $button = $(e.currentTarget)
+    let speed = $button.attr('data-speed')
+    $button.addClass('active')
+      .siblings().removeClass('active')
+    switch (speed) {
+      case 'slow':
+        duration = 80
+        break
+      case 'normal':
+        duration = 50
+        break
+      case 'fast':
+        duration=10
+        break
     }
-    let code=`
+  })
+
+  function writeCode(profix, code, fn) {
+    let container = document.querySelector('#code')
+    let styleTag = document.querySelector('#styleTag')
+    let n = 0
+    let id = setTimeout(function run() {
+      n += 1
+      container.innerHTML = code.substring(0, n)
+      styleTag.innerHTML = code.substring(0, n)
+      container.scrollTop = container.scrollHeight
+      if (n < code.length) {
+        setTimeout(run, duration)
+      } else {
+        fn && fn.call()
+      }
+    }, duration);
+    //通过用户点击按钮来改变duration的值，即每次setinterval的时间是不行的，因为
+    //setinterval只在开始的时候读取一次，之后就不会读取了
+
+  }
+  
+  let code = `
     /*
     *让我们用代码来画一只皮卡丘吧
     *
@@ -122,7 +147,7 @@
       transform:rotate(-25deg);
       right:50%;
       top:53px;
-      box-shadow: -18px -14px 4px 0px rgba(255,230,0,1);    
+      box-shadow: 1px -15px 0px 7px rgba(255,230,1);    
     }
     /*
     *右边的嘴唇
@@ -176,6 +201,9 @@
     *好了，一只皮卡丘就完成了
     */
     `
-    writeCode('', code)
-    
-    
+  writeCode('', code)
+
+
+
+}.call()
+
