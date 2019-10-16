@@ -148,7 +148,7 @@
       transform:rotate(-25deg);
       right:50%;
       top:53px;
-      box-shadow: 1px -15px 0px 7px rgba(255,230,1);    
+      box-shadow: 0px -4px 0px 3px rgba(255,230,1);    
     }
     /*
     *右边的嘴唇
