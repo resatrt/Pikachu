@@ -133,7 +133,7 @@
     .mouseLip{
       width:75px;
       height:25px;
-      border:3px solid black;
+      border-bottom:3px solid black;
       border-radius:10px;
       position: absolute;
       background: #FFE600;
@@ -142,8 +142,7 @@
     *左边的嘴唇
     */
     .mouseLip.left{
-      border-top:none;
-      border-right:none;
+      border-left:3px solid black;
       border-bottom-left-radius:104px 60px;
       transform:rotate(-25deg);
       right:50%;
@@ -154,8 +153,7 @@
     *右边的嘴唇
     */
     .mouseLip.right{
-       border-top:none;
-      border-left:none;
+      border-right:3px solid black;
       border-bottom-right-radius:104px 60px;
       transform:rotate(25deg);
       left:50%;
